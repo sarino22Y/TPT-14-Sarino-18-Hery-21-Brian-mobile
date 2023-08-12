@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "349463668998",
+    "project_id": "tptmbds2023",
+    "storage_bucket": "tptmbds2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:349463668998:android:c5dae015126a12e2915687",
+        "android_client_info": {
+          "package_name": "com.mbds.tpt_sarino_brian_hery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "349463668998-bg8ccbcd5kgmr248mqfuagrdb9f6gmki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDROBbiEU4Z3aO1hMUOmZgL4DBSIk-qeg0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "349463668998-bg8ccbcd5kgmr248mqfuagrdb9f6gmki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

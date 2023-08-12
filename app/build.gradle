@@ -40,4 +40,8 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth:22.1.1' // Authentification Firebase
     implementation 'com.google.firebase:firebase-database:20.2.2' // Base de données Firebase
+    // FIREBASE UI
+    implementation 'com.firebaseui:firebase-ui-auth:8.0.2'
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
+
 }
