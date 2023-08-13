@@ -16,6 +16,7 @@ public class CitizenSearchFragment extends Fragment {
 
     public CitizenSearchFragment() {
         // Constructeur vide requis
+
     }
 
     @Override

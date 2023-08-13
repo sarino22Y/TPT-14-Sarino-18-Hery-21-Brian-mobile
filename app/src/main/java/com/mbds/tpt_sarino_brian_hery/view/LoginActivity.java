@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             Toast.makeText(this, "Bienvenue " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+            finish(); // Terminer LoginActivity pour empêcher le retour
         } else {
             // L'utilisateur n'est pas connecté, affichez l'écran de connexion
             startSignIn();
@@ -82,6 +83,7 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "Vous êtes connecté" + user.getEmail(), Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish(); // Terminer LoginActivity pour empêcher le retour
             } else {
                 Toast.makeText(this, "Vous n'êtes pas connecté", Toast.LENGTH_SHORT).show();
             }

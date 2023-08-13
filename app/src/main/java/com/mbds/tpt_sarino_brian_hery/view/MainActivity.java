@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -54,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         });*//*
     }*/
 
-    private BottomNavigationView bottomNavigationView;
+    /*private BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,5 +102,75 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, fragment);
         fragmentTransaction.commit();
+    }*/
+    private ViewPager2 viewPager;
+    private BottomNavigationView bottomNavigationView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        viewPager = findViewById(R.id.view_pager);
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        viewPager.setAdapter(new PagerAdapter(this));
+
+        // Désactiver le swipe entre les fragments
+//        viewPager.setUserInputEnabled(false);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.action_search_citizen:
+                    viewPager.setCurrentItem(0);
+                    break;
+                case R.id.action_scan_qr:
+                    viewPager.setCurrentItem(1);
+                    break;
+                case R.id.action_event_declaration:
+                    viewPager.setCurrentItem(2);
+                    break;
+                case R.id.action_user_profile:
+                    viewPager.setCurrentItem(3);
+                    break;
+            }
+            return true;
+        });
+
+        // Écouteur pour gérer le changement de fragment lors du swipe
+        viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                bottomNavigationView.getMenu().getItem(position).setChecked(true);
+            }
+        });
+    }
+
+    private static class PagerAdapter extends FragmentStateAdapter {
+        PagerAdapter(MainActivity activity) {
+            super(activity);
+        }
+
+        @NonNull
+        @Override
+        public Fragment createFragment(int position) {
+            switch (position) {
+                case 0:
+                    return new CitizenSearchFragment();
+                case 1:
+                    return new QRCodeScanFragment();
+                case 2:
+                    return new EventDeclarationFragment();
+                case 3:
+                    return new UserProfileFragment();
+                default:
+                    return new Fragment();
+            }
+        }
+
+        @Override
+        public int getItemCount() {
+            return 4;
+        }
     }
 }

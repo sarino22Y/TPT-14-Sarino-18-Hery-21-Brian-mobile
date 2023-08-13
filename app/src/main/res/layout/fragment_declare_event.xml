@@ -1,45 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Layout XML pour le fragment de déclaration d'événement -->
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/background_light"
+        android:padding="32dp">
+
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-    <EditText
-            android:id="@+id/title_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Titre de l'événement"
-            android:padding="16dp"/>
+            <TextView
+                    android:text="Enregistrer un événement"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView"
+                    android:textSize="24sp"
+                    android:textAlignment="center"
+                    android:layout_marginTop="80dp"/>
 
-    <EditText
-            android:id="@+id/description_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/title_field"
-            android:hint="Description de l'événement"
-            android:padding="16dp"/>
+            <EditText
+                    android:id="@+id/title_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Titre de l'événement"
+                    android:background="@drawable/edit_text_rounded_background"
+                    android:textColorHint="#888888"
+                    android:padding="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="50dp"/>
 
-    <EditText
-            android:id="@+id/department_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/description_field"
-            android:hint="Département destiné"
-            android:padding="16dp"/>
+            <EditText
+                    android:id="@+id/description_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Description de l'événement"
+                    android:background="@drawable/edit_text_rounded_background"
+                    android:textColorHint="#888888"
+                    android:padding="16dp"
+                    android:layout_marginBottom="16dp"/>
 
-    <EditText
-            android:id="@+id/citizen_id_field"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/department_field"
-            android:hint="Identifiant unique du citoyen"
-            android:padding="16dp"/>
+            <EditText
+                    android:id="@+id/department_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Département destiné"
+                    android:background="@drawable/edit_text_rounded_background"
+                    android:textColorHint="#888888"
+                    android:padding="16dp"
+                    android:layout_marginBottom="16dp"/>
 
-    <Button
-            android:id="@+id/submit_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/citizen_id_field"
-            android:layout_centerHorizontal="true"
-            android:text="Soumettre"/>
+            <EditText
+                    android:id="@+id/citizen_id_field"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Identifiant unique du citoyen"
+                    android:background="@drawable/edit_text_rounded_background"
+                    android:textColorHint="#888888"
+                    android:padding="16dp"/>
+
+            <Button
+                    android:id="@+id/submit_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Soumettre"
+                    android:background="@drawable/button_rounded_background"
+                    android:textColor="#FFFFFF"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:layout_marginTop="50dp"/>
+        </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
