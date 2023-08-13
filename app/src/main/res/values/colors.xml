@@ -8,4 +8,10 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="colorPrimaryDark">#FF6200EE</color>
+
+    <color name="colorSitePrimary">#E2EEF0</color>
+    <color name="colorSiteSecondary">#61686F</color>
+    <color name="colorSiteTertiary">#737A80</color>
+    <color name="colorSiteQuaternary">#6D6B75</color>
+    <color name="colorSiteQuinary">#23242B</color>
 </resources>
