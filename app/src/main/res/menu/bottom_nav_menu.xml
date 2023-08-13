@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+            android:id="@+id/action_search_citizen"
+            android:icon="@drawable/ic_search"
+            android:title="Recherche"
+            app:showAsAction="always"/>
 
+    <item
+            android:id="@+id/action_scan_qr"
+            android:icon="@drawable/ic_qr_code"
+            android:title="QRCode"
+            app:showAsAction="always"/>
+
+    <item
+            android:id="@+id/action_event_declaration"
+            android:icon="@drawable/ic_event"
+            android:title="Événements"
+            app:showAsAction="always"/>
+
+    <item
+            android:id="@+id/action_user_profile"
+            android:icon="@drawable/ic_profile"
+            android:title="Profile"
+            app:showAsAction="always"/>
 </menu>

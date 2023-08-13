@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context=".view.EventDeclarationFragment">
+<!-- Layout XML pour le fragment de déclaration d'événement -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <EditText
+            android:id="@+id/title_field"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment"/>
+            android:layout_height="wrap_content"
+            android:hint="Titre de l'événement"
+            android:padding="16dp"/>
 
-</FrameLayout>
+    <EditText
+            android:id="@+id/description_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title_field"
+            android:hint="Description de l'événement"
+            android:padding="16dp"/>
+
+    <EditText
+            android:id="@+id/department_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/description_field"
+            android:hint="Département destiné"
+            android:padding="16dp"/>
+
+    <EditText
+            android:id="@+id/citizen_id_field"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/department_field"
+            android:hint="Identifiant unique du citoyen"
+            android:padding="16dp"/>
+
+    <Button
+            android:id="@+id/submit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/citizen_id_field"
+            android:layout_centerHorizontal="true"
+            android:text="Soumettre"/>
+</RelativeLayout>

@@ -1,63 +1,47 @@
 package com.mbds.tpt_sarino_brian_hery.view;
 
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.mbds.tpt_sarino_brian_hery.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CitizenSearchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class CitizenSearchFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText searchField;
+    private TextView resultText;
 
     public CitizenSearchFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CitizenSearchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CitizenSearchFragment newInstance(String param1, String param2) {
-        CitizenSearchFragment fragment = new CitizenSearchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+        // Constructeur vide requis
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_search_citizen, container, false);
+
+        searchField = rootView.findViewById(R.id.search_field);
+        resultText = rootView.findViewById(R.id.result_text);
+
+        // Gérer la recherche lorsqu'un bouton de recherche est cliqué
+        rootView.findViewById(R.id.search_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                performSearch();
+            }
+        });
+
+        return rootView;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_citizen, container, false);
+    private void performSearch() {
+        String searchTerm = searchField.getText().toString().trim();
+
+        // Effectuer la recherche en fonction du searchTerm
+        // Si des citoyens sont trouvés, afficher les résultats dans resultText
+        // Sinon, afficher "Aucun citoyen trouvé" en italique
+        // resultText.setText("Aucun citoyen trouvé");
     }
 }
