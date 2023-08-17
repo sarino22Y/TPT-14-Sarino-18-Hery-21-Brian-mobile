@@ -1,8 +1,12 @@
 package com.mbds.tpt_sarino_brian_hery.view;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +14,9 @@ import android.os.Bundle;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.mbds.tpt_sarino_brian_hery.R;
+import com.mbds.tpt_sarino_brian_hery.model.user.User;
+import com.mbds.tpt_sarino_brian_hery.model.utils.UserDatabaseHelper;
+import com.mbds.tpt_sarino_brian_hery.viewmodel.UserViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -22,35 +29,69 @@ public class RegisterActivity extends AppCompatActivity {
         init();
     }
 
-    TextView lnkLogin, txtName, txtEmail, txtPwd, txtConfirmPwd;
-    FirebaseAuth firebaseAuth;
+    private TextView lnkLogin, txtLastName, txtFirstName, txtEmail, txtPwd, txtConfirmPwd;
+    private FirebaseAuth firebaseAuth;
+    private ProgressBar progressBar;
+
+    private UserDatabaseHelper databaseHelper;
+
+    private UserViewModel userViewModel;
 
     private void init() {
         lnkLogin = findViewById(R.id.lnkLogin);
-        txtName = findViewById(R.id.txtName);
+        txtLastName = findViewById(R.id.txtLastName);
+        txtFirstName = findViewById(R.id.txtFirstName);
         txtEmail = findViewById(R.id.txtEmail);
         txtPwd = findViewById(R.id.txtPwd);
         txtConfirmPwd = findViewById(R.id.txtConfirmPwd);
+        progressBar = findViewById(R.id.progress_bar_register);
+        userViewModel = new UserViewModel(this);
 
         FirebaseApp.initializeApp(this);
         firebaseAuth = FirebaseAuth.getInstance();
 
-        String name = txtName.getText().toString().trim();
-        String email = txtEmail.getText().toString().trim();
-        String pwd = txtPwd.getText().toString().trim();
-        String confirmPwd = txtConfirmPwd.getText().toString().trim();
-        createAccount(name, email, pwd, confirmPwd);
+        databaseHelper = new UserDatabaseHelper(this);
+
+        // Creer un compte
+        createAccount();
         goToLogin();
     }
 
     /**
      * Créer un compte.
      */
-    private void createAccount(String name, String email, String pwd, String confirmPwd) {
+    private void createAccount() {
         findViewById(R.id.btnCreateAccount).setOnClickListener(v -> {
-            if (checkFields(name, email, pwd, confirmPwd)) {
-                firebaseAuth.createUserWithEmailAndPassword(email,pwd);
-                Toast.makeText(this, "Enregistrement en cours", Toast.LENGTH_SHORT).show();
+            showProgressBar();
+            String lastName = txtLastName.getText().toString().trim();
+            String firstName = txtFirstName.getText().toString().trim();
+            String email = txtEmail.getText().toString().trim();
+            String pwd = txtPwd.getText().toString().trim();
+            String confirmPwd = txtConfirmPwd.getText().toString().trim();
+
+            if (checkFields(lastName, firstName, email, pwd, confirmPwd)) {
+                firebaseAuth.createUserWithEmailAndPassword(email,pwd)
+                    .addOnCompleteListener( task -> {
+                        if (task.isSuccessful()) {
+                            User user = new User();
+                            user.setLastName(lastName);
+                            user.setFirstName(firstName);
+                            user.setEmail(email);
+                            user.setPassword(pwd);
+
+                            userViewModel.createAccount(user);
+
+                            Toast.makeText(this, "Inscription reussie", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(this, LoginActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(this, "Erreur lors de l'inscription", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(this, "Vrérifier si l'email est valide", Toast.LENGTH_SHORT).show();
+                            hideProgressBar();
+                        }
+                    }
+                );
+                hideProgressBar();
             }
         });
     }
@@ -58,11 +99,16 @@ public class RegisterActivity extends AppCompatActivity {
     /**
      * Controle des champs.
      */
-    public boolean checkFields(String name, String email, String pwd, String confirmPwd) {
+    public boolean checkFields(String lastName, String firstName, String email, String pwd, String confirmPwd) {
         boolean isValid = true;
-        if (TextUtils.isEmpty(name)) {
-            txtName.setError("Entrer un nom");
-            txtName.requestFocus();
+        if (TextUtils.isEmpty(lastName)) {
+            txtLastName.setError("Entrer un nom");
+            txtLastName.requestFocus();
+            isValid = false;
+        }
+        if (TextUtils.isEmpty(firstName)) {
+            txtFirstName.setError("Entrer un prénom");
+            txtFirstName.requestFocus();
             isValid = false;
         }
         if (TextUtils.isEmpty(email)) {
@@ -94,6 +140,15 @@ public class RegisterActivity extends AppCompatActivity {
     public void goToLogin() {
         lnkLogin.setOnClickListener(v -> {
             startActivity(new Intent(this, LoginActivity.class));
+            finish();
         });
+    }
+
+    private void showProgressBar(){
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar(){
+        progressBar.setVisibility(View.GONE);
     }
 }

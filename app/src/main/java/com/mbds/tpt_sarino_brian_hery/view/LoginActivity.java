@@ -3,7 +3,9 @@ package com.mbds.tpt_sarino_brian_hery.view;
 import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,12 +32,14 @@ public class LoginActivity extends AppCompatActivity {
     TextView lnkRegister;
     EditText txtEmail, txtPwd;
     private static final int RC_SIGN_IN = 123; // Un code de demande arbitraire
+    private ProgressBar progressBar;
 
     private void init() {
         firebaseAuth = FirebaseAuth.getInstance();
         lnkRegister = findViewById(R.id.lnkRegister);
         txtEmail = findViewById(R.id.txtEmailLogin);
         txtPwd = findViewById(R.id.txtPwdLogin);
+        progressBar = findViewById(R.id.progress_bar_login);
         // Vérifiez si l'utilisateur est déjà connecté
         FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -49,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             startSignIn();
             Toast.makeText(this, "Vous êtes sur la page de connexion", Toast.LENGTH_SHORT).show();
         }
-        login(txtEmail.getText().toString(), txtPwd.getText().toString());
+        login();
         goToRegister();
     }
 
@@ -93,14 +97,25 @@ public class LoginActivity extends AppCompatActivity {
     /**
      * Se connecter avec un compte existant.
      */
-    private void login(String email, String pwd) {
+    private void login() {
         findViewById(R.id.btnLogin).setOnClickListener(v -> {
+            showProgressBar();
+            String email = txtEmail.getText().toString();
+            String pwd = txtPwd.getText().toString();
             if (checkFields(email, pwd)) {
-                if (firebaseAuth.createUserWithEmailAndPassword(email,pwd).isComplete()) {
-                    Toast.makeText(this, "Vous êtes connecté", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(this, "Erreur lors de la connexion", Toast.LENGTH_SHORT).show();
-                }
+                firebaseAuth.signInWithEmailAndPassword(email, pwd)
+                .addOnCompleteListener(this, task -> {
+                    if (task.isSuccessful()) {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        Toast.makeText(this, "Vous êtes connecté " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
+                    } else {
+                        Toast.makeText(this, "Erreur lors de la connexion", Toast.LENGTH_SHORT).show();
+                        hideProgressBar();
+                    }
+                });
             }
         });
     }
@@ -137,5 +152,15 @@ public class LoginActivity extends AppCompatActivity {
         lnkRegister.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });
+    }
+
+
+
+    private void showProgressBar(){
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar(){
+        progressBar.setVisibility(View.GONE);
     }
 }

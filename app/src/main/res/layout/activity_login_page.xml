@@ -1,63 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.LoginActivity">
 
-        <TextView
-                android:id="@+id/loginscrn"
+        <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:text="Se connecter"
-                android:textSize="25dp"
-                android:textStyle="bold"
-                android:layout_gravity="center"/>
-        <TextView
-                android:id="@+id/fstTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="20dp"
-                android:text="E-mail"/>
-        <EditText
-                android:id="@+id/txtEmailLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:ems="10"/>
-        <TextView
-                android:id="@+id/secTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Mot de passe"
-                android:layout_marginLeft="100dp"/>
-        <EditText
-                android:id="@+id/txtPwdLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:inputType="textPassword"
-                android:ems="10"/>
-        <Button
-                android:id="@+id/btnLogin"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:text="Se connecter"/>
-        <ImageButton
-                android:layout_width="215dp"
-                android:layout_height="wrap_content" app:srcCompat="@drawable/googleg_standard_color_18"
-                android:id="@+id/btnGoogle" android:backgroundTint="#00FFFFFF" android:layout_gravity="center"
-                android:padding="20dp"/>
-        <TextView android:id="@+id/lnkRegister"
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="40dp"
-                  android:text="Vous n'avez pas de compte? Inscrivez-vous!"
-                  android:gravity="center"
-                  android:textSize="20dp"
-                  android:textColor="#3F51B5"/>
-</LinearLayout>
+                android:id="@+id/progress_bar_login"
+                android:visibility="gone"
+                android:layout_centerInParent="true"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:padding="24dp">
+                <TextView
+                        android:id="@+id/loginscrn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="80dp"
+                        android:text="Se connecter"
+                        android:textSize="25dp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+                <TextView
+                        android:id="@+id/fstTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="E-mail"/>
+                <EditText
+                        android:id="@+id/txtEmailLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"/>
+                <TextView
+                        android:id="@+id/secTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Mot de passe"
+                />
+                <EditText
+                        android:id="@+id/txtPwdLogin"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"
+                        android:ems="10"/>
+                <Button
+                        android:id="@+id/btnLogin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Se connecter"/>
+                <ImageButton
+                        android:layout_width="215dp"
+                        android:layout_height="wrap_content" app:srcCompat="@drawable/googleg_standard_color_18"
+                        android:id="@+id/btnGoogle" android:backgroundTint="#00FFFFFF" android:layout_gravity="center"
+                        android:padding="20dp"/>
+                <TextView android:id="@+id/lnkRegister"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="40dp"
+                          android:text="Vous n'avez pas de compte? Inscrivez-vous!"
+                          android:gravity="center"
+                          android:textSize="20dp"
+                          android:textColor="#3F51B5"/>
+        </LinearLayout>
+</RelativeLayout>

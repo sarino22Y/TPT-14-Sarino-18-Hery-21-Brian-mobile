@@ -1,85 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical" android:layout_width="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.RegisterActivity">
+    <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_bar_register"
+            android:visibility="gone"
+            android:layout_centerInParent="true" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHorizontal_bias="0.498" app:layout_constraintVertical_bias="0.428"/>
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:layout_marginTop="5dp" android:layout_alignParentTop="true">
 
-    <TextView
-            android:id="@+id/loginscrn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:text="Créer un compte"
-            android:textSize="25dp"
-            android:textStyle="bold"
-            android:layout_gravity="center"/>
-    <TextView
-            android:id="@+id/fstTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:layout_marginTop="20dp"
-            android:text="Nom"/>
-    <EditText
-            android:id="@+id/txtName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:ems="10"/>
-    <TextView
-            android:id="@+id/secTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="E-mail"
-            android:layout_marginLeft="100dp" />
-    <EditText
-            android:id="@+id/txtEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:ems="10" />
-    <TextView
-            android:id="@+id/thirdTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Mot de passe"
-            android:layout_marginLeft="100dp" />
-    <EditText
-            android:id="@+id/txtPwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:inputType="textPassword"
-            android:ems="10" />
-    <TextView
-            android:id="@+id/confirmThirdTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Confirmer le mot de passe"
-            android:layout_marginLeft="100dp" />
-    <EditText
-            android:id="@+id/txtConfirmPwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:inputType="textPassword"
-            android:ems="10" />
-    <Button
-            android:id="@+id/btnCreateAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
-            android:text="Créer" />
-    <TextView android:id="@+id/lnkLogin"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginTop="40dp"
-              android:text="Déjà inscrit ? Connectez-vous !"
-              android:gravity="center"
-              android:textSize="20dp"
-              android:textColor="#3F51B5"
-              android:onClick="test"/>
+        <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_gravity="center" android:paddingRight="24dp"
+                android:paddingLeft="24dp" android:paddingTop="5dp">
 
-</LinearLayout>
+            <TextView
+                    android:id="@+id/loginscrn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Créer un compte"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" android:gravity="center"/>
+            <TextView
+                    android:id="@+id/lastNameTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nom"/>
+            <EditText
+                    android:id="@+id/txtLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"/>
+            <TextView
+                    android:id="@+id/firstNameTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prénom"/>
+            <EditText
+                    android:id="@+id/txtFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"/>
+            <TextView
+                    android:id="@+id/secTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="E-mail"
+            />
+            <EditText
+                    android:id="@+id/txtEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"/>
+            <TextView
+                    android:id="@+id/thirdTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mot de passe"
+            />
+            <EditText
+                    android:id="@+id/txtPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"/>
+            <TextView
+                    android:id="@+id/confirmThirdTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Confirmer le mot de passe"
+            />
+            <EditText
+                    android:id="@+id/txtConfirmPwd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:ems="10"/>
+            <Button
+                    android:id="@+id/btnCreateAccount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Créer"/>
+            <TextView android:id="@+id/lnkLogin"
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="24dp"
+                      android:text="Déjà inscrit ? Connectez-vous !"
+                      android:gravity="center"
+                      android:textSize="20dp"
+                      android:textColor="#3F51B5"
+                      android:onClick="test"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
