@@ -15,9 +15,16 @@
             android:supportsRtl="true"
             android:theme="@style/Theme.Tpt_sarino_brian_hery"
             tools:targetApi="31">
-        <!--<activity
+        <activity
+                android:name=".view.ListeDeclareEnventActivity"
+                android:exported="false"
+                android:label="@string/title_activity_liste_declare_envent"
+                android:theme="@style/Theme.Tpt_sarino_brian_hery.NoActionBar"/>
+        <!--
+        <activity
                 android:name=".view.SearchCitizen"
-                android:exported="false"/>-->
+                android:exported="false"/>
+        -->
         <activity
                 android:name=".view.LoginActivity"
                 android:exported="true">

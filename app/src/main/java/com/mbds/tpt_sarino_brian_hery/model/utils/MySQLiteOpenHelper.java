@@ -7,8 +7,6 @@ import androidx.annotation.Nullable;
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
-
-
     private static final String TABLE_USERS = "users";
     private static final String COLUMN_ID = "_id";
     private static final String COLUMN_LASTNAME = "lastName";

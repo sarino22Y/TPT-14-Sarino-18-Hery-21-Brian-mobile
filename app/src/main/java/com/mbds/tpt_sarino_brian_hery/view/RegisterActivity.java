@@ -1,8 +1,6 @@
 package com.mbds.tpt_sarino_brian_hery.view;
 
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteException;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -16,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.mbds.tpt_sarino_brian_hery.R;
 import com.mbds.tpt_sarino_brian_hery.model.user.User;
 import com.mbds.tpt_sarino_brian_hery.model.utils.UserDatabaseHelper;
-import com.mbds.tpt_sarino_brian_hery.viewmodel.UserViewModel;
+import com.mbds.tpt_sarino_brian_hery.viewmodel.user.UserViewModel;
 
 public class RegisterActivity extends AppCompatActivity {
 

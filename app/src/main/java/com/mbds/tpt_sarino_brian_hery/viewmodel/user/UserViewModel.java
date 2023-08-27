@@ -1,4 +1,4 @@
-package com.mbds.tpt_sarino_brian_hery.viewmodel;
+package com.mbds.tpt_sarino_brian_hery.viewmodel.user;
 
 import android.content.Context;
 import com.mbds.tpt_sarino_brian_hery.model.user.User;
